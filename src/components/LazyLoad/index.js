@@ -1,20 +1,18 @@
-import React from "react";
+import React , { useRef , useState, useEffect} from "react";
 import "./styles.css";
-import { useRef } from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+ 
 
 const registerObserver = (ref, setShowImage) => {
-  const observer = new IntersectionObserver((enteries, observer) => {
+  const observer = new IntersectionObserver((enteries, observe) => {
     enteries.forEach((entry) => {
       if (!entry.isIntersecting) {
         return;
       }
       setShowImage(true);
-      observer.disconnect();
+      observe.disconnect();
     });
   });
-  observer.observe(ref);
+  observe.observe(ref);
 };
 
 export default function LazyLoad({ styleClass, src, alt }) {
